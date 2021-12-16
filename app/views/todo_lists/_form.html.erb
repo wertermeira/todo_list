@@ -1,0 +1,6 @@
+<%= simple_form_for @todo_list do |f| %>
+  <div class="input-group mb-3">
+    <%= f.input :name, placeholder: 'Todo list name', input_html: { maxlength: 200, class: 'form-control' }, wrapper: false, label: false %>
+    <%= f.button :submit, { class: 'btn btn-primary' } %>
+  </div>
+<% end %>

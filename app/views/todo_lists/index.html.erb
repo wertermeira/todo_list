@@ -1,0 +1,7 @@
+<h1>TodoLists#index</h1>
+<%= link_to 'Add', new_todo_list_path %>
+<% @todo_lists.each do |todo_list| %>
+  <p><%= todo_list.name %></p>
+  <%= link_to 'Edit', edit_todo_list_path(todo_list) %>
+  <%= link_to 'Delete', todo_list_path(todo_list), method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>

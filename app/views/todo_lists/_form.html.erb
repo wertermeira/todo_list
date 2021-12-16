@@ -1,0 +1,4 @@
+<%= simple_form_for @todo_list do |f| %>
+  <%= f.input :name, placeholder: 'Name',  input_html: { maxlength: 200 } %>
+  <%= f.button :submit %>
+<% end %>

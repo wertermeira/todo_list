@@ -1,0 +1,5 @@
+<h1>TodoList: <%= @todo_list.name %></h1>
+<h2>New Task</h2>
+<%= simple_form_for(@task, method: :post, url: todo_list_tasks_path(todo_list_id: @todo_list.id)) do |f| %>
+  <%= render partial: 'group_input', locals: { f: f } %>
+<% end %>

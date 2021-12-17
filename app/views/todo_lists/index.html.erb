@@ -1,12 +1,18 @@
-<h1>TodoLists#index</h1>
-<%= link_to 'Add', new_todo_list_path %>
+<h1>TodoLists</h1>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">TodoLists</li>
+  </ol>
+</nav>
+<%= link_to 'Add TodoList', new_todo_list_path, class: 'btn btn-primary' %>
+<%= render 'statics_task' %>
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Tasks</th>
-      <th scope="col">Actions</th>
+      <th scope="col" class='text-center'>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -15,8 +21,10 @@
       <th scope="row"><%= todo_list.id %></th>
       <td><%= todo_list.name %></td>
       <td><%= todo_list.tasks.count %></td>
-      <td><%= link_to 'view', todo_list_path(todo_list) %></td>
-      <td><%= link_to 'delete', todo_list_path(todo_list), method: :delete, data: { alert: 'are you sure?' } %></td>
+      <td class='text-center'>
+        <%= link_to 'view', todo_list_tasks_path(todo_list_id: todo_list.id), class: 'btn btn-sm btn-primary' %>
+        <%= link_to 'delete', todo_list_path(todo_list), method: :delete, data: { confirm: 'are you sure?' }, class: 'btn btn-sm btn-danger' %>
+      </td>
     </tr>
     <% end %>
   </tbody>

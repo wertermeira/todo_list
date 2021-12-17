@@ -8,30 +8,6 @@ RSpec.describe 'TodoLists', type: :request do
     end
   end
 
-  describe 'GET /show' do
-    context 'when found' do
-      let(:todo_list) { create(:todo_list) }
-
-      it 'returns http success' do
-        get todo_list_path(todo_list)
-        expect(response).to have_http_status(:success)
-      end
-    end
-
-    context 'when not found todo_list' do
-      let(:todo_list) { create(:todo_list, status: :filed) }
-      it 'render template not found' do
-        get todo_list_path(todo_list)
-        expect(response).to render_template(:not_found)
-      end
-
-      it 'returns status not_found' do
-        get todo_list_path(todo_list)
-        expect(response).to have_http_status(:not_found)
-      end
-    end
-  end
-
   describe 'GET /new' do
     it 'returns http success' do
       get new_todo_list_path
@@ -50,7 +26,7 @@ RSpec.describe 'TodoLists', type: :request do
       end
       it 'when redirect' do
         post todo_lists_path, params: attributes
-        expect(response).to redirect_to todo_lists_path
+        expect(response).to redirect_to todo_list_tasks_path(todo_list_id: TodoList.last.id)
       end
 
       it 'when count by 1' do
@@ -109,7 +85,7 @@ RSpec.describe 'TodoLists', type: :request do
 
       it 'redirect to todo_lists' do
         put todo_list_path(todo_list), params: attributes
-        expect(response).to redirect_to todo_lists_path
+        expect(response).to redirect_to todo_list_tasks_path(todo_list_id: todo_list.id)
       end
     end
 

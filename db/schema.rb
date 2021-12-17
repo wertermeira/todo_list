@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 2021_12_16_220740) do
 
   create_table "todo_lists", force: :cascade do |t|
     t.string "name"
-    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

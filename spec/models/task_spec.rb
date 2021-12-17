@@ -16,11 +16,12 @@ RSpec.describe Task, type: :model do
   end
 
   describe '.validation' do
-    let(:status) {
+    let(:status) do
       { todo: 0, doing: 1, done: 2 }
-    }
+    end
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_length_of(:name).is_at_most(200) }
+    it { is_expected.to validate_presence_of(:status).on(:update) }
     it { is_expected.to define_enum_for(:status).with_values(status).with_prefix(:status) }
   end
 end

@@ -1,0 +1,37 @@
+<h1><%= @todo_list.name %></h1>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to 'TodoLists', todo_lists_path %></li>
+    <li class="breadcrumb-item active" aria-current="page"><%= @todo_list.name %></li>
+  </ol>
+</nav>
+<%= link_to 'Add task', new_todo_list_task_path(todo_list_id: @todo_list.id), class: 'btn btn-primary' %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+      <th scope="col" class='text-center'>Status actions</th>
+      <th scope="col" class='text-center'>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @todo_list.tasks.order(id: :desc).each do |task| %>
+    <tr>
+      <th scope="row"><%= task.id %></th>
+      <td><%= task.name %></td>
+      <td><%= content_tag(:p, task.status, class: class_btn_status(task.status))  %></td>
+      <td class='text-center'>
+        <% Task::STATUSES.keys.each do |status| %>
+          <%= link_to status, status_update_todo_list_task_path(todo_list_id: @todo_list.id, id: task.id, status: status), method: :put, class: class_btn_status(status) unless status.to_s == task.status %>
+        <% end %>
+      </td>
+       <td class='text-center'>
+        <%= link_to 'edit', edit_todo_list_task_path(todo_list_id: @todo_list.id, id: task.id), class: 'btn btn-sm btn-primary' %>
+        <%= link_to 'delete', todo_list_task_path(todo_list_id: @todo_list.id, id: task.id), method: :delete, data: { confirm: 'are you sure?' }, class: 'btn btn-sm btn-danger' %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

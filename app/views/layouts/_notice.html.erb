@@ -1,0 +1,15 @@
+<% if flash[:notice].present? %>
+  <div class='container py-5 h-100'>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Great!</strong> <%= flash[:notice] %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+<% elsif flash[:alert] %>
+  <div class='container py-5 h-100'>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Something wrong!</strong> <%= flash[:alert] %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+<% end %>

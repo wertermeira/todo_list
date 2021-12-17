@@ -1,8 +1,5 @@
 class TodoList < ApplicationRecord
-  enum status: { active: 0, filed: 1 }, _prefix: :status
+  has_many :tasks, dependent: :destroy
 
-  scope :published, -> { where(status: :active) }
-
-  validates :name, presence: true
-  validates :name, length: { maximum: 200 }
+  validates :name, presence: true, length: { maximum: 200 }
 end

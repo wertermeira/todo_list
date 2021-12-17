@@ -1,18 +1,31 @@
-<h1>TodoLists#index</h1>
-<%= link_to 'Add', new_todo_list_path %>
-<div class="accordion" id="accordionExample">
-  <% @todo_lists.each do |todo_list| %>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="<%= "heading#{todo_list.id}" %>">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#<%= "collapse#{todo_list.id}" %>" aria-expanded="true" aria-controls="<%= "collapse#{todo_list.id}" %>">
-          <%= todo_list.name %>
-        </button>
-      </h2>
-      <div id="<%= "collapse#{todo_list.id}" %>" class="accordion-collapse collapse" aria-labelledby="<%= "heading#{todo_list.id}" %>" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
+<h1>TodoLists</h1>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">TodoLists</li>
+  </ol>
+</nav>
+<%= link_to 'Add TodoList', new_todo_list_path, class: 'btn btn-primary' %>
+<%= render 'statics_task' %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Tasks</th>
+      <th scope="col" class='text-center'>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @todo_lists.each do |todo_list| %>
+    <tr>
+      <th scope="row"><%= todo_list.id %></th>
+      <td><%= todo_list.name %></td>
+      <td><%= todo_list.tasks.count %></td>
+      <td class='text-center'>
+        <%= link_to 'view', todo_list_tasks_path(todo_list_id: todo_list.id), class: 'btn btn-sm btn-primary' %>
+        <%= link_to 'delete', todo_list_path(todo_list), method: :delete, data: { confirm: 'are you sure?' }, class: 'btn btn-sm btn-danger' %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

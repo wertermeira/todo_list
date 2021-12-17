@@ -2,7 +2,7 @@ class TodoListsController < ApplicationController
   before_action :set_todo_list, only: %i[edit update destroy]
 
   def index
-    @todo_lists = TodoList.all.order(id: :desc)
+    @todo_lists = TodoList.order(id: :desc).page(params[:page]).per(params[:size])
   end
 
   def new

@@ -7,7 +7,7 @@
 
 ### Populate TodoLists(require first step)
 
-docker exec -it todolist_v1 bash -c 'bundle exec rails populate:todo_lists' \
+docker exec -it todolist_v1 bash -c 'bundle exec rails populate:todo_lists'
 
 ### to run test (require first step)
 docker exec -it todolist_v1 bash -c 'bundle exec rspec'
@@ -17,7 +17,7 @@ docker exec -it todolist_v1 bash -c 'bundle exec rubocop'
 
 
 ### Run application
-http://localhost:3005 (localhost)
+http://localhost:3005 (localhost) \
 https://todo-list-v360.herokuapp.com
 
 

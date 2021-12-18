@@ -1,4 +1,4 @@
-# Firstleaf Take Home Project
+# V360 Take Home Project
 
 ## instructions
 
@@ -10,7 +10,10 @@
 docker exec -it todolist_v1 bash -c 'bundle exec rails populate:todo_lists' \
 
 ### to run test (require first step)
-docker exec -it firstleaf_test bash -c 'bundle exec rspec'
+docker exec -it todolist_v1 bash -c 'bundle exec rspec'
+
+### rubocop (require first step)
+docker exec -it todolist_v1 bash -c 'bundle exec rubocop'
 
 
 ### Run application

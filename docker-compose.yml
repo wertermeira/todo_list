@@ -1,0 +1,37 @@
+version: '2'
+services:
+  postgres:
+    image: postgres:9.5
+    ports:
+      - "5436:5432"
+    environment:
+      - PGDATA=/var/lib/postgresql/data/db-files/
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - postgres:/var/lib/postgresql/data
+  web:
+    build: .
+    tty: true
+    restart: always
+    container_name: todolist_v1
+    env_file:
+      - .env.development
+    links:
+      - postgres
+    volumes:
+      - .:/app
+    volumes_from:
+      - box
+    ports:
+      - 3005:3000
+    depends_on:
+      - postgres
+    entrypoint: ./bin/rails-start.sh
+  box:
+    tty: true
+    image: busybox
+    volumes:
+      - /box
+volumes:
+  postgres:
+  box:

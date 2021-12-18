@@ -13,7 +13,7 @@
     <tr>
       <th scope="col"><%= sort_link(@q, :id, '#', default_order: :desc) %></th>
       <th scope="col"><%= sort_link(@q, :name, 'Name') %></th>
-      <th scope="col">Status</th>
+      <th scope="col"><%= sort_link(@q, :status, 'Status') %></th>
       <th scope="col" class='text-center'>Status actions</th>
       <th scope="col" class='text-center'>Actions</th>
     </tr>

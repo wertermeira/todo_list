@@ -1,0 +1,9 @@
+<%= simple_form_for(@q, method: :get, url: todo_list_tasks_path(todo_list_id: @todo_list.id)) do |f| %>
+  <div class='input-group mb-3 py-3'>
+    <%= f.input :name_cont, placeholder: 'Search task',
+        input_html: { maxlength: 200, class: 'form-control' }, wrapper: false, label: false %>
+    <%= f.input :status_eq, collection: Task::STATUSES.keys.map(&:to_s),
+        label: false, input_html: { class: 'form-select'}, include_blank: true, prompt: 'Status' %>
+    <%= f.submit 'Search', class: 'btn btn-primary' %>
+  </div>
+<% end %>

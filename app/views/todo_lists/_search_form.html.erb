@@ -1,0 +1,7 @@
+<%= simple_form_for(@q, method: :get, url: todo_lists_path) do |f| %>
+  <div class='input-group mb-3 py-3'>
+    <%= f.input :name_cont, placeholder: 'Search TodoList',
+        input_html: { maxlength: 200, class: 'form-control' }, wrapper: false, label: false %>
+    <%= f.submit 'Search', class: 'btn btn-primary' %>
+  </div>
+<% end %>

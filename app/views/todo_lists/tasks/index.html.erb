@@ -1,4 +1,5 @@
 <h1><%= @todo_list.name %></h1>
+<%= render partial: 'todo_lists/shared/statics_task' %>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><%= link_to 'TodoLists', todo_lists_path %></li>
@@ -6,18 +7,19 @@
   </ol>
 </nav>
 <%= link_to 'Add task', new_todo_list_task_path(todo_list_id: @todo_list.id), class: 'btn btn-primary' %>
+<%= render partial: 'search_form' %>
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Status</th>
+      <th scope="col"><%= sort_link(@q, :id, '#', default_order: :desc) %></th>
+      <th scope="col"><%= sort_link(@q, :name, 'Name') %></th>
+      <th scope="col"><%= sort_link(@q, :status, 'Status') %></th>
       <th scope="col" class='text-center'>Status actions</th>
       <th scope="col" class='text-center'>Actions</th>
     </tr>
   </thead>
   <tbody>
-    <% @todo_list.tasks.order(id: :desc).each do |task| %>
+    <% @tasks.each do |task| %>
     <tr>
       <th scope="row"><%= task.id %></th>
       <td><%= task.name %></td>

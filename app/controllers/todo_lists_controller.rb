@@ -1,8 +1,11 @@
+
 class TodoListsController < ApplicationController
   before_action :set_todo_list, only: %i[edit update destroy]
 
   def index
-    @todo_lists = TodoList.order(id: :desc).page(params[:page]).per(params[:size])
+    @q = TodoList.ransack(params[:q])
+    @q.sorts = 'id desc' if @q.sorts.empty?
+    @todo_lists = @q.result.page(params[:page]).per(params[:size])
   end
 
   def new

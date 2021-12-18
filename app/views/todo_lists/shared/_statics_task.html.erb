@@ -1,7 +1,7 @@
 <div class='row py-5'>
   <div class='col'>
   <% Task::STATUSES.keys.map(&:to_s).each do |status| %>
-      <%= statics_tasks(status) %>
+      <%= statics_tasks(todo_list: @todo_list, status: status) %>
   <% end %>
   </div>
 </div>

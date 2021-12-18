@@ -5,12 +5,13 @@
   </ol>
 </nav>
 <%= link_to 'Add TodoList', new_todo_list_path, class: 'btn btn-primary' %>
-<%= render 'statics_task' %>
+<%= render 'todo_lists/shared/statics_task' %>
+<%= render 'search_form' %>
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
+      <th scope="col"><%= sort_link(@q, :id, '#', default_order: :desc) %></th>
+      <th scope="col"><%= sort_link(@q, :name, 'Name') %></th>
       <th scope="col">Tasks</th>
       <th scope="col" class='text-center'>Actions</th>
     </tr>

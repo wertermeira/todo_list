@@ -4,4 +4,6 @@ class Task < ApplicationRecord
   validates :name, presence: true, length: { maximum: 200 }
   validates :status, presence: true, on: :update
   enum status: STATUSES, _prefix: :status
+
+  ransacker :status, formatter: proc { |v| statuses[v] }
 end

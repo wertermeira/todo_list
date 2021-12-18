@@ -4,7 +4,9 @@ module TodoLists
     before_action :set_task, only: %i[edit update status_update destroy]
 
     def index
-      @tasks = @todo_list.tasks.order(id: :desc).page(params[:page]).per(params[:size])
+      @q = @todo_list.tasks.ransack(params[:q])
+      @q.sorts = 'id desc' if @q.sorts.empty?
+      @tasks = @q.result.page(params[:page]).per(params[:size])
     end
 
     def new

@@ -18,17 +18,33 @@ RSpec.describe TodoLists::TasksHelper, type: :helper do
   end
 
   describe '.statics_tasks' do
-    context 'when status' do
+    context 'when status without todolist' do
       it 'returns content_tag span' do
-        expect(helper.statics_tasks('done')).to eq('<span class="btn btn-sm btn-success">0 tasks in done</span>')
+        expect(helper.statics_tasks(status: 'done')).to eq('<span class="btn btn-sm btn-success">0 tasks in done</span>')
       end
 
       it 'returns content_tag span' do
-        expect(helper.statics_tasks('todo')).to eq('<span class="btn btn-sm btn-danger">0 tasks in todo</span>')
+        expect(helper.statics_tasks(status: 'todo')).to eq('<span class="btn btn-sm btn-danger">0 tasks in todo</span>')
       end
 
       it 'returns content_tag span' do
-        expect(helper.statics_tasks('doing')).to eq('<span class="btn btn-sm btn-warning">0 tasks in doing</span>')
+        expect(helper.statics_tasks(status: 'doing')).to eq('<span class="btn btn-sm btn-warning">0 tasks in doing</span>')
+      end
+    end
+
+    context 'when status with todolist' do
+      let(:todo_list) { create(:todo_list) }
+
+      it 'returns content_tag span' do
+        expect(helper.statics_tasks(todo_list: todo_list, status: 'done')).to eq('<span class="btn btn-sm btn-success">0 tasks in done</span>')
+      end
+
+      it 'returns content_tag span' do
+        expect(helper.statics_tasks(todo_list: todo_list, status: 'todo')).to eq('<span class="btn btn-sm btn-danger">0 tasks in todo</span>')
+      end
+
+      it 'returns content_tag span' do
+        expect(helper.statics_tasks(todo_list: todo_list, status: 'doing')).to eq('<span class="btn btn-sm btn-warning">0 tasks in doing</span>')
       end
     end
   end

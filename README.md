@@ -17,7 +17,8 @@ docker exec -it todolist_v1 bash -c 'bundle exec rubocop'
 
 
 ### Run application
-http://localhost:3005
+http://localhost:3005 (localhost)
+https://todo-list-v360.herokuapp.com
 
 
 

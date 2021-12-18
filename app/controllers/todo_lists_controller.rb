@@ -1,4 +1,3 @@
-
 class TodoListsController < ApplicationController
   before_action :set_todo_list, only: %i[edit update destroy]
 

@@ -9,7 +9,7 @@ module TodoLists
       "btn btn-sm #{class_btn[status.to_s]}"
     end
 
-    def statics_tasks(todo_list: nil, status:)
+    def statics_tasks(status:, todo_list: nil)
       tasks = if todo_list.present?
                 todo_list.tasks
               else

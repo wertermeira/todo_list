@@ -12,13 +12,14 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-.env.*
+.env.development
 .env
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
 !/tmp/pids/
 /coverage
 !/tmp/pids/.keep
+/vendor/cache
 
 # Ignore uploaded files in development.
 /storage/*
